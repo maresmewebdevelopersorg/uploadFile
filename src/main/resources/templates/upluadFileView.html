@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+</head>
+<style>
+    #customFile .custom-file-control::after {
+        content: "Select file...";
+    }
+
+    #customFile .custom-file-control::before {
+        content: "Click me";
+    }
+
+    #customFile .custom-file-control:lang(es)::after {
+        content: "Seleccionar archivo...";
+    }
+
+    #customFile .custom-file-control:lang(es)::before {
+        content: "Seleccionar";
+    }
+
+    .custom-file-control.selected:lang(en)::after {
+        content: "" !important;
+    }
+
+    .custom-file {
+        overflow: hidden;
+    }
+    .custom-file-control {
+        white-space: nowrap;
+    }
+</style>
+<body>
+<div class="container" style="margin-top: 30px">
+    <div class="card">
+        <div class="jumbotron">
+            <h1 style="text-align: center;">Un archivo</h1>
+        </div>
+        <form method="post" th:action="@{/upload}" enctype="multipart/form-data" id="fileUploadForm" class="container">
+            <div class="form-group">
+                <label class="custom-file" id="customFile">
+                    <input type="file" class="custom-file-input" name="file" aria-describedby="fileHelp">
+                    <span class="custom-file-control form-control-file"></span>
+                </label>
+            </div>
+            <div style="margin-bottom: 10px">
+                <button type="submit" class="btn btn-success">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    $('.custom-file-input').on('change',function(){
+        $(this).next('.form-control-file').addClass("selected").html($(this).val());
+    })
+</script>
+</html>
